@@ -19,12 +19,14 @@ create table ujon.tbl_blog
     title         varchar(100)             not null,
     language_code varchar(2),
     status        varchar(25)              not null,
+    content_type  varchar(10)              not null,
     created_at    timestamp with time zone not null default now(),
     updated_at    timestamp with time zone not null default now(),
     constraint pk_blog primary key (blog_id)
 );
 
 comment on column ujon.tbl_blog.language_code is 'ISO 639-1';
+comment on column ujon.tbl_blog.content_type is 'type: markdown';
 comment on column ujon.tbl_blog.status is 'type: pending, publish, delete';
 
 

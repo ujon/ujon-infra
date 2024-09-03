@@ -6,3 +6,7 @@ Thumbs.db
 
 # TOOL
 .idea
+
+# VOLUME
+.infra
+.infra/

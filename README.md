@@ -1,15 +1,21 @@
 # UJON Infra
 
+## Start
 
-## Docker Compose 
+```bash
+# start docker container
+sh ./command.sh --local start
+# generate db data with flyway
+sh ./command.sh --local migration
+# stop docker container
+sh ./command.sh --local stop
+# delete all generated data
+sh ./command.sh --local clean
+```
 
-## Volume
-When mounting a volume in a local environment, the path should be as follow structure. <br/>
-structure: `~/volume/${project name}/${image}/${environment}/data` <br/>
-example: `~/volume/ujon/postgres/local/data`
+## Phase
 
+In the future, a `dev` and `staging` phase could be added. 
 
-## Database
-
-## Rules
-- prefix: tbl_
+- local
+- prod
