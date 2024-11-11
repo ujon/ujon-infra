@@ -2,40 +2,44 @@
 
 # Function to show usage
 help() {
-  echo "todo"
+  echo "Usage: $0 <action> <parameter>"
+  echo ""
+  echo "Actions:"
+  echo "  start       Start the PostgreSQL database"
+  echo "  stop        Stop the PostgreSQL database"
+  echo "  migration   Perform Flyway migration"
+  echo "  validate    Validate Flyway scripts"
+  echo "  secret      Generate a GitHub Actions secret key"
+  echo "  clean       Clean up resources"
+  echo ""
+  echo "Examples:"
+  echo "  $0 start prod"
+  echo "  $0 migration dev"
   exit 1
 }
 
 # Ensure the correct number of arguments are provided
-if [ $# -ne 2 ]; then
+if [ $# -ne 1 ]; then
   help
 fi
 
-ENV=""
 ACTION=""
 
-# Parse arguments
 case $1 in
-  --local)
-    ENV="local"
-    ;;
-  --prod)
-    ENV="prod"
-    ;;
-  *)
-    help
-    ;;
-esac
-
-case $2 in
   start)
-    ACTION="start_pg"
+    ACTION="pg_start"
     ;;
   stop)
-    ACTION="stop_pg"
+    ACTION="pg_stop"
     ;;
   migration)
     ACTION="flyway_migration"
+    ;;
+  validate)
+    ACTION="flyway_validate"
+    ;;
+  secret)
+    ACTION="secret_generate"
     ;;
   clean)
     ACTION="clean"
@@ -46,8 +50,7 @@ case $2 in
 esac
 
 # Construct the script name
-SCRIPT="bin/${ENV}/${ACTION}.sh"
+SCRIPT="bin/${ACTION}.sh"
 
-echo "env: $ENV"
 echo "script: $SCRIPT"
 /bin/bash "$SCRIPT"

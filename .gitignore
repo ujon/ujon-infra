@@ -10,3 +10,6 @@ Thumbs.db
 # VOLUME
 .infra
 .infra/
+
+# TEMP
+flyway.conf.b64

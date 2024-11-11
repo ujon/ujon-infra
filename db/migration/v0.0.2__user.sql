@@ -50,5 +50,5 @@ create table ujon.tbl_user_email
 -- insert
 insert into ujon.tbl_role (role_id, name)
 values (uuid7(), 'master'),
-       (uuid7(), 'administrator'),
+       (uuid7(), 'admin'),
        (uuid7(), 'user');
