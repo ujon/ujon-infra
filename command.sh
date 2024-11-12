@@ -7,8 +7,8 @@ help() {
   echo "Actions:"
   echo "  start       Start the PostgreSQL database"
   echo "  stop        Stop the PostgreSQL database"
-  echo "  migration   Perform Flyway migration"
-  echo "  validate    Validate Flyway scripts"
+  echo "  migrate     Migrate Flyway"
+  echo "  validate    Validate Flyway"
   echo "  secret      Generate a GitHub Actions secret key"
   echo "  clean       Clean up resources"
   echo ""
@@ -32,8 +32,8 @@ case $1 in
   stop)
     ACTION="pg_stop"
     ;;
-  migration)
-    ACTION="flyway_migration"
+  migrate)
+    ACTION="flyway_migrate"
     ;;
   validate)
     ACTION="flyway_validate"
