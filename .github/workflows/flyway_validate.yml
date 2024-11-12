@@ -4,9 +4,13 @@ on:
   push:
     paths:
       - "db/**"
+    tags-ignore:
+      - "*"
   pull_request:
     paths:
       - "db/**"
+    tags-ignore:
+      - "*"
   workflow_dispatch:
 
 jobs:
