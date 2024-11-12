@@ -18,7 +18,7 @@ jobs:
           echo "${{ secrets.FLYWAY_CONFIG }}" | base64 --decode > flyway.conf
           cat flyway.conf
 
-      - name: Validate database
+      - name: Migrate database
         uses: docker://redgate/flyway:10.21.0
         with:
           args: >-
