@@ -1,16 +1,12 @@
-name: Validate database
+name: Migrate database
 
 on:
   push:
-    paths:
-      - "db/**"
-  pull_request:
-    paths:
-      - "db/**"
-  workflow_dispatch:
+    tags:
+      - "migrate*"
 
 jobs:
-  validate:
+  migrate:
     environment: production
     runs-on: ubuntu-latest
     steps:
@@ -26,6 +22,5 @@ jobs:
         uses: docker://redgate/flyway:10.21.0
         with:
           args: >-
-            validate
-            -configFiles=flyway.conf 
-            -target=current
+            migrate
+            -configFiles=flyway.conf
