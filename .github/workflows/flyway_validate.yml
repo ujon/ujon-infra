@@ -1,0 +1,38 @@
+name: Validate database
+
+on:
+  push:
+    paths:
+      - "db/**"
+  pull_request:
+    paths:
+      - "db/**"
+  workflow_dispatch:
+
+jobs:
+  validate:
+    environment: production
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+#      - name: Install Flyway
+#        run: wget -qO- https://download.red-gate.com/maven/release/com/redgate/flyway/flyway-commandline/10.21.0/flyway-commandline-10.21.0-linux-x64.tar.gz | tar -xvz && sudo ln -s `pwd`/flyway-10.21.0/flyway /usr/local/bin
+
+      - name: Decode Flyway config
+        run: |
+          echo "${{ secrets.FLYWAY_CONFIG }}" | base64 --decode > flyway.conf
+          cat flyway.conf
+
+      - name: Validate database
+        uses: docker://redgate/flyway:10.21.0
+        with:
+          args: >-
+            validate
+            -configFiles=flyway.conf 
+            -target=current
+
+#      - name: Validate database
+#        run: |
+#          flyway validate -configFiles=flyway.conf -target=current
