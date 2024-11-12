@@ -1,5 +1,8 @@
 # Environment
 
+# Manual add required
+flyway.conf
+
 # OS
 .DS_Store
 Thumbs.db
